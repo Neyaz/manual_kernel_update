@@ -22,7 +22,14 @@ cd linux*
 cp -v /boot/config-$(uname -r) .config
 
 # Compile
-make olddefconfig && make -j 2 && make modules_install && make install
+make olddefconfig
+./scripts/config --set-val VBOXSF_FS y
+./scripts/config --set-val VBOXGUEST y
+make -j 2 && make modules_install && make install
+
+# Clean after build
+make clean
+
 # Remove older kernels (Only for demo! Not Production!)
 rm -f /boot/*3.10*
 # Update GRUB
