@@ -1,5 +1,20 @@
 ## Задание 1
 
+Определить алгоритм с наилучшим сжатием
+
+Шаги:
+- определить какие алгоритмы сжатия поддерживает zfs (gzip gzip-N, zle lzjb, lz4)
+- создать 4 файловых системы на каждой применить свой алгоритм сжатия
+Для сжатия использовать либо текстовый файл либо группу файлов:
+- скачать файл “Война и мир” и расположить на файловой системе
+wget -O War_and_Peace.txt http://www.gutenberg.org/ebooks/2600.txt.utf-8
+либо скачать файл ядра распаковать и расположить на файловой системе
+
+Результат:
+- список команд которыми получен результат с их выводами
+- вывод команды из которой видно какой из алгоритмов лучше
+
+
 ```bash
 ➜  zfs git:(lvm) ✗ vagrant ssh
 [vagrant@server ~]$ lsblk
@@ -69,6 +84,24 @@ test/test4  compressratio  1.62x     -
 ```
 
 ## Задание 2
+
+Определить настройки pool’a
+
+Шаги:
+- Загрузить архив с файлами локально.
+https://drive.google.com/open?id=1KRBNW33QWqbvbVHa3hLJivOAt60yukkg
+Распаковать.
+- С помощью команды zfs import собрать pool ZFS.
+- Командами zfs определить настройки
+- размер хранилища
+- тип pool
+- значение recordsize
+- какое сжатие используется
+- какая контрольная сумма используется
+Результат:
+- список команд которыми восстановили pool . Желательно с Output команд.
+- файл с описанием настроек settings
+
 ```bash
 [root@server vagrant] zpool import -d /vagrant/zpoolexport/ otus
 [root@server vagrant] zpool list
@@ -118,6 +151,19 @@ otus/hometask2  checksum     sha256     inherited from otus
 5. checksum: `sha256`
 
 ## Задание 3
+
+Найти сообщение от преподавателей
+
+Шаги:
+- Скопировать файл из удаленной директории. https://drive.google.com/file/d/1gH8gCL9y7Nd5Ti3IRmplZPF1XjzxeRAG/view?usp=sharing
+Файл был получен командой
+zfs send otus/storage@task2 > otus_task2.file
+- Восстановить файл локально. zfs receive
+- Найти зашифрованное сообщение в файле secret_message
+
+Результат:
+- список шагов которыми восстанавливали
+- зашифрованное сообщение
 
 ```bash
 [root@server vagrant] zfs receive otus/storage < /vagrant/otus_task2.file
