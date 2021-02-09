@@ -46,14 +46,14 @@ test/test4    24K  1.75G       24K  /test/test4
 [root@server vagrant] zfs set compression=gzip test/test1
 [root@server vagrant] zfs set compression=zle test/test2
 [root@server vagrant] zfs set compression=lzjb test/test3
-[root@server vagrant] zfs set compression=lz4 test/test3
+[root@server vagrant] zfs set compression=lz4 test/test4
 [root@server vagrant] zfs get compression
 NAME        PROPERTY     VALUE     SOURCE
 test        compression  off       default
 test/test1  compression  gzip      local
 test/test2  compression  zle       local
-test/test3  compression  lz4       local
-test/test4  compression  off       default
+test/test3  compression  lzjb      local
+test/test4  compression  lz4       local
 [root@server vagrant] wget -O War_and_Peace.txt http://www.gutenberg.org/files/2600/2600-0.txt
 --2021-02-09 18:54:46--  http://www.gutenberg.org/files/2600/2600-0.txt
 Resolving www.gutenberg.org (www.gutenberg.org)... 152.19.134.47
