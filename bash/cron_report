@@ -1,0 +1,1 @@
+0 * * * * cd /vagrant && /bin/bash /vagrant/script.sh --inputfile=/vagrant/access-4560-644067.log --iplimit=5 --urllimit=5 --email=vagrant
